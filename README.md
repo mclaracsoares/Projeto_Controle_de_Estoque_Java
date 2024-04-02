@@ -14,7 +14,7 @@ Login dos Clientes:
 · Novos clientes podem se cadastrar, fornecendo nome e CPF, ou podem entrar como visitantes sem cadastro.
 
 
-*Requisitos:*
+# *Requisitos:*
 
 **Minimos:**
 
