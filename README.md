@@ -11,6 +11,7 @@ O sistema permite que um funcionario da loja cadastre o cliente, o auxilie nas c
 Login dos Clientes:
 
 · Clientes previamente cadastrados podem ser autenticados no sistema, fornecendo seu nome e CPF.
+
 · Novos clientes podem se cadastrar, fornecendo nome e CPF, ou podem entrar como visitantes sem cadastro.
 
 
@@ -36,11 +37,17 @@ Carrinho de Compras:
 # *Validações:*
 
 · Valida o CPF fornecido pelos clientes para garantir que ele tenha o formato correto de 11 dígitos.
+
 · Verifica se a opção selecionada nos menus de login e principal é válida, fornecendo uma mensagem de erro para opções inválidas.
+
 · Verifica se a quantidade desejada de um produto está disponível no estoque antes de adicionar ao carrinho. Se não estiver disponível, o programa informa ao cliente e oferece a opção de adicionar a quantidade disponível.
+
 · Ao comprar um produto, o programa verifica se a quantidade especificada pelo cliente é um número inteiro positivo.
+
 · Calcula o preço total da compra com base na quantidade de produtos selecionados.
+
 · No menu de encerramento da compra, o programa solicita ao cliente se deseja continuar com outro usuário.
+
 · Em perguntas de Sim/Não para o usuario, o programa aceita qualquer formato de resposta (s/S/Sim/SIM/SiMm...n/N/não/NAO/NaOoo...).
 
 # *Estrutura do Código*
