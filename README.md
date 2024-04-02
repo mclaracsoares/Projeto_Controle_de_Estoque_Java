@@ -6,7 +6,7 @@ Esse repositório irá conter um código que abrange um sistema de estoques na l
 
 O sistema permite que um funcionario da loja cadastre o cliente, o auxilie nas compras, visualize o estoque de produtos disponíveis e mantenham um carrinho de compras virtual, acessar as informações pessoais do cliente logado e realizar operações de compra de produtos disponíveis no estoque.
 
-**Funcionalidades**
+# *Funcionalidades*
 
 Login dos Clientes:
 
@@ -24,7 +24,7 @@ Login dos Clientes:
 
 · Tratar situações como a remoção de produtos que não estão no estoque.
 
-**Adicionais:**
+***Adicionais:***
 
 · Acesso a um menu principal que oferece as opções mínimas e, comprar produtos, visualizar o carrinho de compras, dados pessoais do cliente da vez, saldo total das compras realizadas e ver todos os produtos no estoque.
 
