@@ -44,15 +44,15 @@ Carrinho de Compras:
 · Em perguntas de Sim/Não para o usuario, o programa aceita qualquer formato de resposta (s/S/Sim/SIM/SiMm...n/N/não/NAO/NaOoo...).
 
 *Estrutura do Código*
+
 **Classe Main:**
-
 Responsável por iniciar o sistema e exibir os menus de login e principal.
+
 **Classe Estoque:**
-
 Gerencia o estoque de produtos, permitindo adicionar, remover, consultar, atualizar e buscar produtos.
+
 **Classe Cliente:**
-
 Representa os clientes do sistema, fornecendo métodos para login, cadastro, compra de produtos e manipulação do carrinho de compras.
-**Classe Produto:**
 
+**Classe Produto:**
 Representa os produtos disponíveis no estoque, com atributos de nome, quantidade e preço.
