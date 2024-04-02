@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,22 +6,23 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Estoque estoque = new Estoque();
         ArrayList<Cliente> clientes = new ArrayList<>();
-        Cliente clienteLogado = null; // cliente com login
+        Cliente clienteLogado = null; // Inicialmente nenhum cliente está logado
 
         while (true) {
             if (clienteLogado == null) {
-                clienteLogado = exibirMenuLogin(scanner, clientes, estoque);
+                clienteLogado = exibirMenuLogin(scanner, clientes, estoque); // Exibe o menu de login e retorna o cliente logado
             } else {
-                boolean continuar = exibirMenuPrincipal(scanner, clienteLogado, estoque, clientes);
+                boolean continuar = exibirMenuPrincipal(scanner, clienteLogado, estoque, clientes); // Exibe o menu principal e verifica se o cliente quer continuar
                 if (!continuar) {
-                    clienteLogado = null; // reset cliente 
+                    clienteLogado = null; // Reseta o cliente logado se ele decidir sair
                 }
             }
         }
     }
     
+    // Exibe o menu de login
     private static Cliente exibirMenuLogin(Scanner scanner, ArrayList<Cliente> clientes, Estoque estoque) {
-        Cliente clienteLogado = null; // inicialmente ninguem ta logado
+        Cliente clienteLogado = null; // Inicialmente nenhum cliente está logado.2
     
         while (clienteLogado == null) {
             System.out.println("\nMenu de Login:\n");
@@ -37,15 +37,15 @@ public class Main {
     
             switch (opcao) {
                 case 1:
-                    Cliente novoCliente = cadastrarNovoCliente(scanner, clientes);
+                    Cliente novoCliente = cadastrarNovoCliente(scanner, clientes); // Permite que o usuário cadastre um novo cliente
                     if (novoCliente != null) {
-                        clientes.add(novoCliente);
+                        clientes.add(novoCliente); // Adiciona o novo cliente à lista de clientes
                         System.out.println("Novo cliente cadastrado com sucesso!");
-                        clienteLogado = novoCliente; // logar novo cliente automatico
+                        clienteLogado = novoCliente; // Loga "automaticamente" o novo cliente
                     }
                     break;
                 case 2:
-                    clienteLogado = acessarClienteExistente(scanner, clientes, estoque);
+                    clienteLogado = acessarClienteExistente(scanner, clientes, estoque); // Permite que o usuário acesse um cliente existente
                     break;
                 case 3:
                     System.out.println("Entrando sem cadastro...");
@@ -53,7 +53,7 @@ public class Main {
                     break;
                 case 4:
                     System.out.println("Saindo.");
-                    System.exit(0); // fim do programa
+                    System.exit(0); // Finaliza o programa
                 default:
                     System.out.println("Opção inválida. Escolha uma opção válida.");
             }
@@ -62,7 +62,7 @@ public class Main {
         return clienteLogado;
     }
 
-
+    // Permite que o usuário acesse um cliente existente com nome e CPF
     private static Cliente acessarClienteExistente(Scanner scanner, ArrayList<Cliente> clientes, Estoque estoque) {
         System.out.print("Digite o nome do cliente: ");
         String nomeCliente = scanner.nextLine();
@@ -70,118 +70,121 @@ public class Main {
         System.out.print("Digite o CPF do cliente: ");
         String cpfCliente = scanner.nextLine();
 
-        Cliente cliente = buscarCliente(nomeCliente, cpfCliente, clientes);
+        Cliente cliente = buscarCliente(nomeCliente, cpfCliente, clientes); // Busca o cliente na lista de clientes
 
         if (cliente != null) {
             System.out.println("Cliente autenticado com sucesso!");
-            return cliente;
+            return cliente; // Retorna o cliente encontrado
         } else {
-            System.out.println("Cliente não encontrado. Verifique o nome e o CPF digitados.");
+            System.out.println("Cliente não encontrado. Verifique o nome e o CPF digitados."); // Cliente não encontrado
             return null;
         }
     }
 
+    // Busca um cliente na lista de clientes pelo nome e CPF
     private static Cliente buscarCliente(String nomeCliente, String cpfCliente, ArrayList<Cliente> clientes) {
         for (Cliente cliente : clientes) {
             if (cliente.getNome().equalsIgnoreCase(nomeCliente) && cliente.getCpf().equals(cpfCliente)) {
-                return cliente;
+                return cliente; // Retorna o cliente encontrado
             }
         }
-        return null;
+        return null; // Retorna null se o cliente não for encontrado
     }
     
-private static boolean exibirMenuPrincipal(Scanner scanner, Cliente clienteLogado, Estoque estoque, ArrayList<Cliente> clientes) {
-    while (true) {
-        System.out.println("\nMenu Principal:\n");
-        System.out.println("1. Adicionar produto");
-        System.out.println("2. Remover produto");
-        System.out.println("3. Consultar produto");
-        System.out.println("4. Atualizar produto");
-        System.out.println("5. Comprar produto");
-        System.out.println("6. Ver carrinho");
-        System.out.println("7. Ver dados do cliente");
-        System.out.println("8. Ver saldo total do cliente");
-        System.out.println("9. Ver todos os produtos em estoque");
-        System.out.println("10. Encerrar compra");
+    // Exibe o menu principal
+    private static boolean exibirMenuPrincipal(Scanner scanner, Cliente clienteLogado, Estoque estoque, ArrayList<Cliente> clientes) {
+        while (true) {
+            System.out.println("\nMenu Principal:\n");
+            System.out.println("1. Adicionar produto");
+            System.out.println("2. Remover produto");
+            System.out.println("3. Consultar produto");
+            System.out.println("4. Atualizar produto");
+            System.out.println("5. Comprar produto");
+            System.out.println("6. Ver carrinho");
+            System.out.println("7. Ver dados do cliente");
+            System.out.println("8. Ver saldo total do cliente");
+            System.out.println("9. Ver todos os produtos em estoque");
+            System.out.println("10. Encerrar compra");
 
-        System.out.print("Escolha uma opção: ");
-        int opcaoSecundaria = scanner.nextInt();
-        scanner.nextLine(); 
+            System.out.print("Escolha uma opção: ");
+            int opcaoSecundaria = scanner.nextInt();
+            scanner.nextLine(); 
 
-        switch (opcaoSecundaria) {
-            case 1:
-                adicionarProduto(estoque, scanner);
-                break;
-            case 2:
-                removerProduto(estoque, scanner);
-                break;
-            case 3:
-                consultarProduto(estoque, scanner);
-                break;
-            case 4:
-                atualizarProduto(estoque, scanner);
-                break;
-            case 5:
-                comprarProduto(clienteLogado, estoque, scanner);
-                break;
-            case 6:
-                verCarrinho(clienteLogado, scanner);
-                break;
-            case 7:
-                verDadosCliente(clienteLogado);
-                break;
-            case 8:
-                verSaldoTotalCliente(clienteLogado, estoque);
-                break;
-            case 9:
-                verProdutosEmEstoque(estoque);
-                break;
-            case 10:
-                System.out.print("Deseja continuar com outro usuário? ");
-                String continuarComOutroUsuario = String.valueOf(scanner.nextLine().trim().toLowerCase().charAt(0));
+            switch (opcaoSecundaria) {
+                case 1:
+                    adicionarProduto(estoque, scanner); // Adicionar um novo produto ao estoque
+                    break;
+                case 2:
+                    removerProduto(estoque, scanner); // Remover um produto do estoque
+                    break;
+                case 3:
+                    consultarProduto(estoque, scanner); // Consultar um produto no estoque
+                    break;
+                case 4:
+                    atualizarProduto(estoque, scanner); // Atualizar as informações de um produto no estoque
+                    break;
+                case 5:
+                    comprarProduto(clienteLogado, estoque, scanner); // Comprar um produto do estoque
+                    break;
+                case 6:
+                    verCarrinho(clienteLogado, scanner); // Mostrar o carrinho de compras do cliente
+                    break;
+                case 7:
+                    verDadosCliente(clienteLogado); // Mostrar os dados do cliente
+                    break;
+                case 8:
+                    verSaldoTotalCliente(clienteLogado, estoque); // Mostrar o saldo total do cliente
+                    break;
+                case 9:
+                    verProdutosEmEstoque(estoque); // Mostrar todos os produtos no estoque (disponivel e indisponivel)
+                    break;
+                case 10:
+                    System.out.print("Deseja continuar com outro usuário? ");
+                    String continuarComOutroUsuario = String.valueOf(scanner.nextLine().trim().toLowerCase().charAt(0));
 
-                if (continuarComOutroUsuario.equals("s")) {
-                    return false; //volta ao menu 1
-                } else {
-                    System.out.println("Saindo.");
-                    System.exit(0); // fim
-                }
-                break;
-            default:
-                System.out.println("Opção inválida. Digite uma opção válida.");
+                    if (continuarComOutroUsuario.equals("s")) {
+                        return false; // Retorna falso para voltar ao menu de login (1)
+                    } else {
+                        System.out.println("Saindo.");
+                        System.exit(0); // Finaliza o programa
+                    }
+                    break;
+                default:
+                    System.out.println("Opção inválida. Digite uma opção válida.");
+            }
         }
     }
-}
 
-    
-private static void adicionarProduto(Estoque estoque, Scanner scanner) {
-    System.out.print("Digite o nome do produto: ");
-    String nome = scanner.nextLine(); // Lê toda a linha, incluindo espaços em branco
+    // Permite que o usuario adicione um novo produto ao estoque
+    private static void adicionarProduto(Estoque estoque, Scanner scanner) {
+        System.out.print("Digite o nome do produto: ");
+        String nome = scanner.nextLine(); // Le a linha toda, incluindo espaços em branco
 
-    System.out.print("Digite a quantidade do produto: ");
-    int quantidade = Integer.parseInt(scanner.nextLine().trim()); // Lê a quantidade e remove espaços em branco
+        System.out.print("Digite a quantidade do produto: ");
+        int quantidade = Integer.parseInt(scanner.nextLine().trim()); // Le a quantidade e remove espaços em branco
 
-    System.out.print("Digite o preço do produto: ");
-    double preco = Double.parseDouble(scanner.nextLine().trim()); // Lê o preço e remove espaços em branco
+        System.out.print("Digite o preço do produto: ");
+        double preco = Double.parseDouble(scanner.nextLine().trim()); // Le o preço e remove espaços em branco
 
-    Produto novoProduto = new Produto(nome, quantidade, preco);
-    estoque.adicionarProduto(novoProduto);
-}
+        Produto novoProduto = new Produto(nome, quantidade, preco);
+        estoque.adicionarProduto(novoProduto);
+    }
 
-
-
+    // Remove um produto do estoque
     private static void removerProduto(Estoque estoque, Scanner scanner) {
         System.out.print("Digite o nome do produto que deseja remover: ");
         String nomeProduto = scanner.nextLine();
         estoque.removerProduto(nomeProduto);
     }
 
+    // Consulta um produto no estoque
     private static void consultarProduto(Estoque estoque, Scanner scanner) {
         System.out.print("Digite o nome do produto que deseja consultar: ");
         String nomeProduto = scanner.nextLine();
         estoque.consultarProduto(nomeProduto);
     }
 
+    // Atualiza as informações de um produto no estoque
     private static void atualizarProduto(Estoque estoque, Scanner scanner) {
         System.out.print("Digite o nome do produto que deseja atualizar: ");
         String nomeProduto = scanner.nextLine();
@@ -197,6 +200,7 @@ private static void adicionarProduto(Estoque estoque, Scanner scanner) {
         estoque.atualizarProduto(nomeProduto, novaQuantidade, novoPreco);
     }
 
+    // Permite que o cliente compre um produto do estoque
     private static void comprarProduto(Cliente clienteLogado, Estoque estoque, Scanner scanner) {
         System.out.print("Digite o nome do produto que deseja comprar: ");
         String nomeProduto = scanner.nextLine();
@@ -210,7 +214,7 @@ private static void adicionarProduto(Estoque estoque, Scanner scanner) {
         }
     }
 
-    
+    // Permite que um novo cliente seja cadastrado
     private static Cliente cadastrarNovoCliente(Scanner scanner, ArrayList<Cliente> clientes) {
         System.out.print("Digite o nome do cliente: ");
         String nomeCliente = scanner.nextLine();
@@ -223,25 +227,26 @@ private static void adicionarProduto(Estoque estoque, Scanner scanner) {
             cpfCliente = scanner.nextLine();
         }
     
-        // novo cliente
+        // Cria um novo cliente
         Cliente novoCliente = new Cliente(nomeCliente, cpfCliente);
     
-        // verificação de cpf e nome 
+        // Verifica se o nome ou CPF já estão associados a outro cliente
         for (Cliente cliente : clientes) {
             if (cliente.getNome().equalsIgnoreCase(nomeCliente) || cliente.getCpf().equals(cpfCliente)) {
                 System.out.println("Este nome ou CPF já está associado a outro cliente.");
-                return null; // duplicatas
+                return null; // Retorna null se houver duplicatas
             }
         }
     
         return novoCliente;
     }
 
-
+    // Mostra o carrinho de compras do cliente
     private static void verCarrinho(Cliente clienteLogado, Scanner scanner) {
         clienteLogado.mostrarCarrinho();
     }
 
+    // Mostra os dados do cliente
     private static void verDadosCliente(Cliente clienteLogado) {
         if (clienteLogado != null && !clienteLogado.getNome().equalsIgnoreCase("visitante")) {
             System.out.println("Dados do cliente:");
@@ -252,6 +257,7 @@ private static void adicionarProduto(Estoque estoque, Scanner scanner) {
         }
     }
 
+    // Mostra o saldo total do cliente
     private static void verSaldoTotalCliente(Cliente clienteLogado, Estoque estoque) {
         double saldoTotal = 0;
         for (String item : clienteLogado.getCarrinho()) {
@@ -266,20 +272,20 @@ private static void adicionarProduto(Estoque estoque, Scanner scanner) {
         System.out.printf("Saldo total do cliente %s: R$%.2f%n", clienteLogado.getNome(), saldoTotal);
     }
 
-
-    
+    // Mostra todos os produtos no estoque
     private static void verProdutosEmEstoque(Estoque estoque) {
         if (estoque.getProdutos().isEmpty()) {
             System.out.println("Não há produtos no estoque.");
         } else {
             System.out.println("Produtos em estoque:");
             for (Produto produto : estoque.getProdutos()) {
-                String status = (produto.getQuantidade() > 0) ? "Disponível" : "Esgotado"; // if e else chic 
+                String status = (produto.getQuantidade() > 0) ? "Disponível" : "Esgotado"; // Verifica se o produto está disponível ou esgotado
                 System.out.printf("%s: %d unidades (%s)%n", produto.getNome(), produto.getQuantidade(), status);
             }
         }
     }
 
+    // Valida o formato do CPF
     private static boolean validarCPF(String cpf) {
         return cpf.matches("\\d{11}");
     }
