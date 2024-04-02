@@ -24,7 +24,7 @@ Login dos Clientes:
 
 · Tratar situações como a remoção de produtos que não estão no estoque.
 
-***Adicionais:***
+**Adicionais:**
 
 · Acesso a um menu principal que oferece as opções mínimas e, comprar produtos, visualizar o carrinho de compras, dados pessoais do cliente da vez, saldo total das compras realizadas e ver todos os produtos no estoque.
 
@@ -33,7 +33,7 @@ Carrinho de Compras:
 
 · Pode-se visualizar os produtos que adicionaram ao carrinho durante a sessão de compras, escolhendo a cada item se deseja continuar comprando ou finalizar a compra.
 
-**Validações:**
+# *Validações:*
 
 · Valida o CPF fornecido pelos clientes para garantir que ele tenha o formato correto de 11 dígitos.
 · Verifica se a opção selecionada nos menus de login e principal é válida, fornecendo uma mensagem de erro para opções inválidas.
@@ -43,7 +43,7 @@ Carrinho de Compras:
 · No menu de encerramento da compra, o programa solicita ao cliente se deseja continuar com outro usuário.
 · Em perguntas de Sim/Não para o usuario, o programa aceita qualquer formato de resposta (s/S/Sim/SIM/SiMm...n/N/não/NAO/NaOoo...).
 
-*Estrutura do Código*
+# *Estrutura do Código*
 
 **Classe Main:**
 Responsável por iniciar o sistema e exibir os menus de login e principal.
